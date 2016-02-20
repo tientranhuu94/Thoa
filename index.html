@@ -3,108 +3,14 @@
 <head>
     <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
     <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-    <style type="text/css">
-    #container {
-        max-width: 400px;
-        height: 400px;
-        margin: auto;
-    }
-    </style>
+    <link rel="stylesheet" type="text/css" href="./css/main.css">
 </head>
 
 <body>
     <div id="container"></div>
-    <script src="sigma.min.js"></script>
-    <script src="sigma.parsers.json.min.js"></script>
-    <script>
-    var lines = [];
-    var g = {
-        "nodes": [{
-            "id": "n0",
-            "label": "Node 1",
-            "x": 0,
-            "y": 0,
-            "size": 3
-        }, {
-            "id": "n1",
-            "label": "Node 2",
-            "x": 3,
-            "y": 1,
-            "size": 2
-        }, {
-            "id": "n2",
-            "label": "Node 3",
-            "x": 1,
-            "y": 3,
-            "size": 1
-        }, {
-            "id": "n3",
-            "label": "Node 4",
-            "x": 4,
-            "y": 6,
-            "size": 1
-        }, {
-            "id": "n4",
-            "label": "Node 5",
-            "x": 6,
-            "y": 1,
-            "size": 5
-        }],
-        "edges": [{
-            "id": "e0",
-            "source": "n0",
-            "target": "n1"
-        }, {
-            "id": "e1",
-            "source": "n1",
-            "target": "n2"
-        }, {
-            "id": "e2",
-            "source": "n2",
-            "target": "n0"
-        }]
-    }
-
-    s = new sigma({
-        graph: g,
-        container: 'container',
-        settings: {
-            defaultNodeColor: '#ec5148'
-        }
-    });
-
-    function getIdNode(label) {
-        var node = "";
-        for (var i in g.nodes) {
-            node = g.nodes[i];
-            if (label === node.label) {
-                return node.id;
-            }
-        }
-    }
-    s.bind('clickNode', function(e) {
-        var id = g.edges[g.edges.length - 1].id[1];
-        lines.push(getIdNode(e.data.node.label));
-        console.log(lines);
-        if (lines.length === 2) {
-            console.log(g);
-            var edge = {
-                id: 'e' + g.edges.length,
-                source: lines[0],
-                target: lines[1]
-            }
-            g.edges.push(edge);
-            s.graph.addEdge({
-                id: 'e' + g.edges.length,
-                source: lines[0],
-                target: lines[1]
-            });
-            lines = [];
-            console.log(g.edges);
-            s.refresh();
-        }
-    });
-    </script>
+    <script src="./js/sigma.min.js"></script>
+    <script src="./js/sigma.parsers.json.min.js"></script>
+    <script src="./js/main.js"></script>
 </body>
 
 </html>
